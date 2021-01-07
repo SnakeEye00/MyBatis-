@@ -68,11 +68,11 @@ public class Test {
 	
 	public static void main(String[] args) throws IOException {
 		queryAllStudents();
-		addStudents();
-		queryAllStudents();
-		updateStudents();
-		deleteStudents();
-		queryAllStudents();
-		queryStudentByStuno();
+//		addStudents();
+//		queryAllStudents();
+//		updateStudents();
+//		deleteStudents();
+//		queryAllStudents();
+//		queryStudentByStuno();
 	}
 }
