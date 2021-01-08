@@ -5,9 +5,42 @@
 	<!-- parameterType：输入类型参数
 			resultType：返回类型
 	-->
-	<select id="queryStudentByStuno"	parameterType="int"	 resultType="student">
+	<select id="queryStudentByStuno"	parameterType="int"	 resultMap="studentResult">
 		select * from student where stuno = #{stuno}
 	</select>
+	
+	<select id="queryStudentByStuname"	parameterType="string"	 resultType="student">
+		select stuno,stuname,stuage from student where stuname = ${value}
+	</select>
+	
+	<select id="queryStudentOrderByColumn"  parameterType="String"	resultType="student">
+		select stuno,stuname,stuage from student order by ${value} desc
+	</select>
+	
+	<select id="queryStudentBystuageOrstuName"  parameterType="student"	resultType="student">
+		select stuno,stuname,stuage from student where stuage = #{stuAge} or stuname like #{stuName}
+	</select>
+	
+	<!-- <select id="queryStudentByaddress"  parameterType="address"	resultType="student">
+		select stuno,stuname,stuage from student where homeaddress = #{homeAddress} or schooladdress = '${schoolAddress}'
+	</select>
+	 -->
+	 
+	<select id="queryStudentByaddress"  parameterType="student"	resultType="student">
+		select stuno,stuname,stuage from student where homeaddress = #{address.homeAddress} or schooladdress = '${address.schoolAddress}'
+	</select>
+	
+	
+	<!--  
+	<resultMap type="student" id="studentMapping">
+		<id property="id"  column="stuno"/>
+		 <result property=" stuName" column="stuname"/>	
+		<result property=" stuAge" column="stuage"/>	
+		<result property=" gtaName" column="graname"/>
+		<result property=" stuSex" column="stunsex"  javaType="boolean"  jdbcType="INTEGER"/>
+	</resultMap>
+	-->
+	
 	
 	<!-- 查询：使用了类型转换器
 		1.如果类中的属性和表中的字段能够合理识别 例如（String-varchar）否则可以使用resultMap 例如（Boolean - int ）

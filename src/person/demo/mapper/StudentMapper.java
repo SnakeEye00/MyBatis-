@@ -2,8 +2,7 @@ package person.demo.mapper;
 
 
 import java.util.List;
-
-import person.demo.entity.Student;
+import person.demo.entity.*;
 
 //操作mybatis的接口
 public interface StudentMapper {
@@ -31,4 +30,16 @@ public interface StudentMapper {
 	
 	//使用了转换器增加学生
 	void addStudentWithConverter(Student student);
+	
+	//使用名称查询学生
+	Student queryStudentByStuname(String stuName);
+	
+	//查询全部学生
+	List<Student> queryStudentOrderByColumn(String column);
+	
+	
+	List<Student> queryStudentBystuageOrstuName(Student student);
+	
+	//根据地址查询学生
+	List<Student> queryStudentByaddress(Student student);
 }

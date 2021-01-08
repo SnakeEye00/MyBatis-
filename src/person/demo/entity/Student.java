@@ -6,8 +6,11 @@ public class Student {
 	private int stuAge;
 	private String graName;
 	private boolean stuSex;
+	private Address address;
+	
 	public Student() {
 	}
+	
 	public Student(int stuNo, String stuName, int stuAge, String graName) {
 		super();
 		this.stuNo = stuNo;
@@ -15,6 +18,7 @@ public class Student {
 		this.stuAge = stuAge;
 		this.graName = graName;
 	}
+	
 	public Student(int stuNo, String stuName, int stuAge, String graName, boolean stuSex) {
 		super();
 		this.stuNo = stuNo;
@@ -54,11 +58,19 @@ public class Student {
 	public void setStuSex(boolean stuSex) {
 		this.stuSex = stuSex;
 	}
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Student [stuNo=" + stuNo + ", stuName=" + stuName + ", stuAge=" + stuAge + ", graName=" + graName
-				+ ", stuSex=" + stuSex + "]";
+				+ ", stuSex=" + stuSex + "]\n";
 	}
-	
 	
 }	

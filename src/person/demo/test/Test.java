@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import person.demo.entity.Student;
+import person.demo.entity.*;
 import person.demo.mapper.StudentMapper;
 
 public class Test {
@@ -23,6 +23,16 @@ public class Test {
 		session.close();
 	}
 	
+	//通过姓名查询一个学生
+		public static void queryStudentByStuname() throws IOException {
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = sessionFactory.openSession();
+			StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+			System.out.println(studentMapper.queryStudentByStuname("zs").toString());
+			session.close();
+		}
+	
 	//查询全部学生
 	public static void queryAllStudents() throws IOException {
 		Reader reader = Resources.getResourceAsReader("conf.xml");
@@ -33,6 +43,49 @@ public class Test {
 		System.out.println(students.toString());
 		session.close();
 	}
+	
+	
+	//查询全部学生
+		public static void queryStudentOrderByColumn() throws IOException {
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			SqlSessionFactory sessionFactoty = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = sessionFactoty.openSession();
+			StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+			List<Student> students = studentMapper.queryStudentOrderByColumn("stuno");
+			System.out.println(students.toString());
+			session.close();
+		}
+		
+		
+		public static void queryStudentBystuageOrstuName() throws IOException {
+			Student student = new Student();
+			student.setStuAge(23);
+			student.setStuName("%w%z");
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			SqlSessionFactory sessionFactoty = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = sessionFactoty.openSession();
+			StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+			List<Student> students = studentMapper.queryStudentBystuageOrstuName(student);
+			System.out.println(students.toString());
+			session.close();
+		}
+		
+		//根据地址查询学生
+		public static void queryStudentByaddress() throws IOException {
+			Student student = new Student();
+			Address address = new Address();
+			address.setHomeAddress("jn");
+			address.setSchoolAddress("yt");
+			student.setAddress(address);
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			SqlSessionFactory sessionFactoty = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = sessionFactoty.openSession();
+			StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+			List<Student> students = studentMapper.queryStudentByaddress(student);
+			System.out.println(students.toString());
+			session.close();
+		}
+		
 	//添加学生
 	public static void addStudents() throws IOException {
 		Student student = new Student(6 , "ll" , 22 , "g4");
@@ -90,7 +143,7 @@ public class Test {
 	
 	
 	public static void main(String[] args) throws IOException {
-		addStudentsWithConverter();
+//		addStudentsWithConverter();
 //		queryStudentByStunoWithConverter();
 //		queryAllStudents();
 //		addStudents();
@@ -99,5 +152,9 @@ public class Test {
 //		deleteStudents();
 //		queryAllStudents();
 //		queryStudentByStuno();
+//		queryStudentByStuname();
+//		queryStudentOrderByColumn();
+//		queryStudentBystuageOrstuName();
+		queryStudentByaddress();
 	}
 }
