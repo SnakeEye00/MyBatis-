@@ -5,6 +5,24 @@
 	<!-- parameterType：输入类型参数
 			resultType：返回类型
 	-->
+	<select id="queryStudentCount"	 resultType="int">
+		select count(*)  from student 
+	</select>
+	
+	
+	<select id="queryStuByStuno"	parameterType="int"	 resultType="student">
+		select * from student where stuno = #{stuno}
+	</select>
+
+	<select id="queryStudentOutByHashMap"  resultType="HashMap">
+		<!-- sql语句中字段的别名对应HashMap的key -->
+		select stuno "no", stuname "name"  from student
+	</select>
+	
+	
+	
+	
+	
 	<select id="queryStudentByStuno"	parameterType="int"	 resultMap="studentResult">
 		select * from student where stuno = #{stuno}
 	</select>
@@ -18,7 +36,13 @@
 	</select>
 	
 	<select id="queryStudentBystuageOrstuName"  parameterType="student"	resultType="student">
-		select stuno,stuname,stuage from student where stuage = #{stuAge} or stuname like #{stuName}
+		select stuno,stuname,stuage from student 
+		where stuage = #{stuAge} or stuname like #{stuName}
+	</select>
+	
+	<select id="queryStudentBystuageOrstuNameWithHashMap"  parameterType="HashMap"	resultType="student">
+		select stuno,stuname,stuage from student 
+		where stuage = #{stuAge} or stuname like #{stuName}
 	</select>
 	
 	<!-- <select id="queryStudentByaddress"  parameterType="address"	resultType="student">

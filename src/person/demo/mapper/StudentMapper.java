@@ -1,7 +1,10 @@
 package person.demo.mapper;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import person.demo.entity.*;
 
 //操作mybatis的接口
@@ -42,4 +45,18 @@ public interface StudentMapper {
 	
 	//根据地址查询学生
 	List<Student> queryStudentByaddress(Student student);
+	
+	//传参为HashMap
+	List<Student> queryStudentBystuageOrstuNameWithHashMap(Map<String, Object> map);
+	
+	//查询学生总数
+	int queryStudentCount();
+	
+	
+	//根据学号查询学生
+	Student queryStuByStuno(int stuNo);
+	
+	//查询返回值为HashMap
+	List<HashMap<String, Object>> queryStudentOutByHashMap();
+	
 }
