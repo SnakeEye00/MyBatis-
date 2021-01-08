@@ -26,5 +26,6 @@ public interface StudentMapper {
 	
 	//修改
 	void updateStudentByStuno(Student student);
-	
+
+	Student queryStudentByStunoWithConverter(int stuno);
 }

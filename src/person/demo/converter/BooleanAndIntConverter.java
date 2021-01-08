@@ -11,7 +11,6 @@ import org.apache.ibatis.type.TypeHandler;
 
 //在此位置的泛型为Java类型
 public class BooleanAndIntConverter extends BaseTypeHandler<Boolean>{		
-	
 	//java（boolean） - > DB（int）
 	/*
 	 * ps：PreparedStatement对象
@@ -28,7 +27,6 @@ public class BooleanAndIntConverter extends BaseTypeHandler<Boolean>{
 			ps.setInt(i, 0);
 		}
 	}
-	
 	//get : DB(int) - > java(Boolean)
 	@Override
 	public Boolean getNullableResult(ResultSet rs, String columnName) throws SQLException {
@@ -41,13 +39,10 @@ public class BooleanAndIntConverter extends BaseTypeHandler<Boolean>{
 		int sexNum = rs.getInt(columnIndex);
 		return sexNum ==1 ? true : false;
 	}
-	
-	
-	//CallableStatement --存储过程 存储函数65
+	//CallableStatement --存储过程 存储函数
 	@Override
 	public Boolean getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
 		int sexNum = cs.getInt(columnIndex);
 		return sexNum ==1 ? true : false;
 	}
-
 }

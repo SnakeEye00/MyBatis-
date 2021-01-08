@@ -5,7 +5,9 @@ public class Student {
 	private String stuName;
 	private int stuAge;
 	private String graName;
-	
+	private boolean stuSex;
+	public Student() {
+	}
 	public Student(int stuNo, String stuName, int stuAge, String graName) {
 		super();
 		this.stuNo = stuNo;
@@ -13,9 +15,15 @@ public class Student {
 		this.stuAge = stuAge;
 		this.graName = graName;
 	}
-	public Student() {
+	public Student(int stuNo, String stuName, int stuAge, String graName, boolean stuSex) {
+		super();
+		this.stuNo = stuNo;
+		this.stuName = stuName;
+		this.stuAge = stuAge;
+		this.graName = graName;
+		this.stuSex = stuSex;
 	}
-	
+
 	public int getStuNo() {
 		return stuNo;
 	}
@@ -40,9 +48,17 @@ public class Student {
 	public void setGraName(String graName) {
 		this.graName = graName;
 	}
+	public boolean isStuSex() {
+		return stuSex;
+	}
+	public void setStuSex(boolean stuSex) {
+		this.stuSex = stuSex;
+	}
 	@Override
 	public String toString() {
-		return "Student [stuNo=" + stuNo + ", stuName=" + stuName + ", stuAge=" + stuAge + ", graName=" + graName + "]";
+		return "Student [stuNo=" + stuNo + ", stuName=" + stuName + ", stuAge=" + stuAge + ", graName=" + graName
+				+ ", stuSex=" + stuSex + "]";
 	}
+	
 	
 }	

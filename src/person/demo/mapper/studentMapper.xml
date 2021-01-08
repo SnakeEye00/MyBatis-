@@ -5,11 +5,30 @@
 	<!-- parameterType：输入类型参数
 			resultType：返回类型
 	-->
-	<select id="queryStudentByStuno"	parameterType="int"	 resultType="person.demo.entity.Student">
+	<select id="queryStudentByStuno"	parameterType="int"	 resultType="student">
 		select * from student where stuno = #{stuno}
 	</select>
 	
-	<insert id="addStudent" parameterType="person.demo.entity.Student" >
+	<!-- 查询：使用了类型转换器
+		1.如果类中的属性和表中的字段能够合理识别 例如（String-varchar）否则可以使用resultMap 例如（Boolean - int ）
+		2.如果类中的属性名表中的字段能够合理试别 例如（stuNo - stuNo）否则可以使用resultMap-->
+	<select id="queryStudentByStunoWithConverter"	parameterType="int"	 resultMap="studentResult">
+		select * from student where stuno = #{stuno}
+	</select>
+	
+	<!-- type为返回值类型，studentResult为配置的resultMap 的id值，通过id找resultMap配置 -->
+	<resultMap type="student"  id="studentResult">
+		<!-- 分为主键与非主键
+		主键用id   非主键用result -->
+		<id property="stuNo" column="stuno"/>
+		<!--  <result property=" stuName" column="stuname"/>	
+		<result property=" stuAge" column="stuage"/>	
+		<result property=" gtaName" column="graname"/>-->
+		<result property=" stuSex" column="stunsex"  javaType="boolean"  jdbcType="INTEGER"/>		
+	</resultMap>
+	
+	
+	<insert id="addStudent" parameterType="student" >
 		insert into student (stuno , stuname , stuage , graname) values ( #{stuNo} , #{stuName} , #{stuAge} , #{graName} );
 	</insert>
 	
@@ -17,11 +36,11 @@
 		delete from student where stuno = #{stuno}
 	</delete>
 	
-	<update id="updateStudentByStuno" parameterType="person.demo.entity.Student">
+	<update id="updateStudentByStuno" parameterType="student">
 		update student set stuname = #{stuName}  , stuage = #{stuAge} , graname = #{graName} where stuno = #{stuNo}	
 	</update>
 	
-	<select id="queryAllStudents" resultType="person.demo.entity.Student">
+	<select id="queryAllStudents" resultType="student">
 		select * from student
 	</select>
 </mapper>

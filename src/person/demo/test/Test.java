@@ -35,7 +35,7 @@ public class Test {
 	}
 	//添加学生
 	public static void addStudents() throws IOException {
-		Student student = new Student(5 , "王睿" , 22 , "g4");
+		Student student = new Student(6 , "ll" , 22 , "g4");
 		Reader reader = Resources.getResourceAsReader("conf.xml");
 		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		SqlSession session = sessionFactory.openSession();
@@ -66,8 +66,20 @@ public class Test {
 		session.close();
 	}
 	
+	//带有stuSex的查询 使用了转换器
+	public static void queryStudentByStunoWithConverter() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sessionFactory.openSession();
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		System.out.println(studentMapper.queryStudentByStunoWithConverter(1).toString());
+		session.close();
+	}
+	
+	
 	public static void main(String[] args) throws IOException {
-		queryAllStudents();
+		queryStudentByStunoWithConverter();
+//		queryAllStudents();
 //		addStudents();
 //		queryAllStudents();
 //		updateStudents();
