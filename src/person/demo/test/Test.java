@@ -44,6 +44,18 @@ public class Test {
 		session.commit();
 		session.close();
 	}
+	//添加学生带转换器
+		public static void addStudentsWithConverter() throws IOException {
+			Student student = new Student(8 , "ll" , 22 , "g4" , true);
+			Reader reader = Resources.getResourceAsReader("conf.xml");
+			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			SqlSession session = sessionFactory.openSession();
+			StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+			studentMapper.addStudentWithConverter(student);
+			session.commit();
+			session.close();
+			System.out.println("增加成功");
+		}
 	//删除学生
 	public static void deleteStudents() throws IOException {
 		Reader reader = Resources.getResourceAsReader("conf.xml");
@@ -78,7 +90,8 @@ public class Test {
 	
 	
 	public static void main(String[] args) throws IOException {
-		queryStudentByStunoWithConverter();
+		addStudentsWithConverter();
+//		queryStudentByStunoWithConverter();
 //		queryAllStudents();
 //		addStudents();
 //		queryAllStudents();

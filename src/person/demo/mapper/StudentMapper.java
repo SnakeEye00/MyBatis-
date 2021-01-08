@@ -28,4 +28,7 @@ public interface StudentMapper {
 	void updateStudentByStuno(Student student);
 
 	Student queryStudentByStunoWithConverter(int stuno);
+	
+	//使用了转换器增加学生
+	void addStudentWithConverter(Student student);
 }
