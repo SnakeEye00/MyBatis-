@@ -25,6 +25,24 @@ public class Test {
 		session.close();
 	}
 	
+	public static void queryStudentById() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sessionFactory.openSession();
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		System.out.println(studentMapper.queryStudentById(1).toString());
+		session.close();
+	}
+	
+	public static void queryStudentByIdWithHashMap() throws IOException {
+		Reader reader = Resources.getResourceAsReader("conf.xml");
+		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+		SqlSession session = sessionFactory.openSession();
+		StudentMapper studentMapper = session.getMapper(StudentMapper.class);
+		System.out.println(studentMapper.queryStudentByIdWithHashMap(1).toString());
+		session.close();
+	}
+	
 	public static void queryStuByStuno() throws IOException {
 		Reader reader = Resources.getResourceAsReader("conf.xml");
 		SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(reader);
@@ -205,6 +223,8 @@ public class Test {
 //		queryStudentBystuageOrstuNameWithHashMap();
 //		queryStudentCount();
 //		queryStuByStuno();
-		queryStudentOutByHashMap();
+//		queryStudentOutByHashMap();
+//		queryStudentById();
+		queryStudentByIdWithHashMap();
 	}
 }

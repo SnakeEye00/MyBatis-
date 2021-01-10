@@ -59,4 +59,8 @@ public interface StudentMapper {
 	//查询返回值为HashMap
 	List<HashMap<String, Object>> queryStudentOutByHashMap();
 	
+	Student queryStudentById(int stuNo);
+	
+	Student queryStudentByIdWithHashMap(int stuNo);
+	
 }

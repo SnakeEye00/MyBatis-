@@ -20,7 +20,19 @@
 	</select>
 	
 	
+	<select id="queryStudentById" parameterType="int"   resultMap="queryStudent">
+		select id , name from student where id = #{id}
+	</select>
 	
+	<resultMap type="student" id="queryStudent">
+		<!-- 指定类中的属性和表中的字段对应关系 -->
+		<id  property="stuNo" column="id" />
+		<result property="stuName" column="name"/>
+	</resultMap>
+	
+	<select id="queryStudentByIdWithHashMap" parameterType="int"   resultType="student">
+		select id "stuNo" , name "stuName" from student where id = #{id}
+	</select>
 	
 	
 	<select id="queryStudentByStuno"	parameterType="int"	 resultMap="studentResult">
